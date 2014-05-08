@@ -158,7 +158,10 @@ It looks like an import but it isn't!
 Another option
 ==============
 
-Migrate your code to python 3 using `2to3.py <https://docs.python.org/2/library/2to3.html>`_.
+Migrate your code to python 3 using |2to3.py|_.
+
+.. |2to3.py| replace:: ``2to3.py``
+.. _2to3.py: https://docs.python.org/2/library/2to3.html
 
 Consider the following python 2 code in ``code.py``:
 
@@ -173,24 +176,20 @@ To see the ``2to3`` diff run:
 
     $ 2to3 code.py
 
-To write those changes into ``code.py`` run:
-
-.. code-block:: bash
-
-    $ 2to3 -w code.py
-
 .. slide::
 
-    The code after change will be:
+    To write those changes into ``code.py`` run:
+
+    .. code-block:: bash
+
+        $ 2to3 -w code.py
+
+    The code after the change will be:
 
     .. code-block:: python
 
         print("Hello", end=' ')
         print("world!")
-
-========
-Division
-========
 
 Division
 ========
@@ -227,3 +226,29 @@ In order to mimic python 3 behavior using python 2 and write code that is backwa
 
     1 / 2  # -> 0.5
     1 // 2  # -> 0
+
+Old Friends. New names
+======================
+
+.. rst-class:: build
+
+- We have already saw ``raw_input``. Why not just ``input``?
+
+- In python 3 ``raw_input`` renamed to just ``input``.
+
+- Same with ``xrange``. Now it named ``range``.
+
+So how can we keep backward / forward compatibility, again?
+===========================================================
+
+.. rst-class:: build
+
+- One option is to use ``2to3`` to migrate to python 3 as we saw earlier (breaks compatibility).
+
+- Another option is to use the python 2 and 3 compatibility library: |six|_.
+
+.. |six| replace:: ``six``
+.. _six: https://pythonhosted.org/six/
+
+``six``
+=======
