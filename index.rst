@@ -71,7 +71,7 @@ So, why the switch?
 
 - It make more sense. You've gut an argument to manipulate -> Sounds like a function!
 - It still keeps things easy to learn and easy to use.
-- It can be "mokey patched" (for example, redirect, ignore, send email, filter, buffer)
+- It can be "monkey patched" (for example, redirect, ignore, send email, filter, buffer)
 
     .. code-block:: python
 
@@ -252,3 +252,106 @@ So how can we keep backward / forward compatibility, again?
 
 ``six``
 =======
+
+.. code-block:: python
+
+    from six.moves import range
+
+    print(type(range(5)))  # -> xrange on 2, range on 3
+
+    from six.moves import input
+
+    name = input('What is your name? ')  # works on both 2 and 3
+    print(name)
+
+Read the docs for more ``"moves"``.
+
+===========================
+Object oriented made simple
+===========================
+
+New-style and classic classes
+=============================
+
+.. rst-class:: build
+
+- Until python 2.1 all classes object where of type ``instance``.
+
+- New-style classes where introduced in python 2.2.
+
+- In order to create a new-style class you would need to subclass another new-style class, or at least ``object``:
+
+    .. code-block:: python
+
+        class MyClass(object):
+            def __init__(self):
+                print("I'm a new style classed object")
+
+.. slide::
+
+    .. rst-class:: build
+
+    - Old-style classes are removed in Python 3, leaving only the semantics of new-style classes.
+
+    - You don't have to subclass ``object`` anymore, although doing so is recommended (in order to keep backward compatibility).
+
+    - More info `here <https://docs.python.org/2/reference/datamodel.html#new-style-and-classic-classes>`_.
+
+``super()``
+===========
+
+Look at the code below
+
+.. code-block:: python
+
+    class FunnyJoke(Joke):
+        def tell_joke(self):
+            joke = super(FunnyJoke, self).tell_joke()
+            return joke + ' ha ha ha...'
+
+.. rst-class:: build
+
+- Can you think of any other use for ``super()``?
+
+- No?
+
+- Great! Because there is (almost) no other use case.
+
+.. slide::
+
+    In python 3 you don't have to specify the name of your class, nor giving an instance (although doing it is recommended).
+
+    .. code-block:: python
+
+        class FunnyJoke(Joke):
+            def tell_joke(self):
+                joke = super().tell_joke()  # <- here is the difference
+                return joke + ' ha ha ha...'
+
+=====================
+Unicode (at least...)
+=====================
+
+Unicode in python 2
+===================
+
+.. rst-class:: build
+
+- Strings in python are actually byte arrays.
+
+- So we can use the 'unicode' type with unicode literals
+
+    .. code-block:: python
+
+        hello_hebrew = u'שלום עולם'
+
+- or use the string encode / decode method to convert between byte arrays and unicode.
+
+====================================
+In python 3 all strings are unicode!
+====================================
+
+Backward / forward compatible code using ``six``
+================================================
+
+TODO finish
