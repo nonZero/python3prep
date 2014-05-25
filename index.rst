@@ -13,7 +13,7 @@ When? What? How? Why?
 
 - Should I switch to 3? mmm?
 - And what about the libs?
-- Would we switch to 3?
+- Would **we** switch to 3?
 
 *Yes!*
 ======
@@ -99,7 +99,8 @@ So, why the switch?
 
     .. code-block:: python
 
-        print('some text', file='file.txt')
+        with open('file.txt', 'w') as f:
+            print('some text', file=f)
 
 .. slide::
 
@@ -110,7 +111,7 @@ So, why the switch?
         f = open('file.txt')
         print > f, 'some text'
 
-    pretty ugly, non pythonic code...
+    pretty ugly non pythonic code...
 
 But...
 ======
@@ -153,7 +154,7 @@ It looks like an import but it isn't!
     .. code-block:: python
 
         from __future__ import print_function
-        print "python 2 style print"  # raises a SyntaxException!!!
+        print "python 2 style print"  # raises a SyntaxError!!!
 
 Another option
 ==============
@@ -203,7 +204,7 @@ Division
         1 // 2  # -> 0
         3 // 2  # -> 1
 
-- In python 2 ``int`` / ``int`` -> ``int``. Always!
+- In python 2 ``int`` / ``int`` -> ``int``. *Always!*
 
     .. code-block:: python
 
@@ -291,7 +292,7 @@ New-style and classic classes
 
     .. rst-class:: build
 
-    - Old-style classes are removed in Python 3, leaving only the semantics of new-style classes.
+    - Old-style classes have been removed from Python 3, leaving only the semantics of new-style classes.
 
     - You don't have to subclass ``object`` anymore, although doing so is recommended (in order to keep backward compatibility).
 
